@@ -1,0 +1,16 @@
+import sqlite3
+import sys
+northwind_small = sys.path.append('../northwind_small_source')
+
+con = sqlite3.connect('northwind_small')
+curs = con.cursor()
+#curs.execute("SELECT name FROM Category WHERE type='table' ORDER BY name;").fetchall()
+# [('Category',), ('Customer',), ('CustomerCustomerDemo',),
+# ('CustomerDemographic',), ('Employee',), ('EmployeeTerritory',), ('Order',),
+# ('OrderDetail',), ('Product',), ('Region',), ('Shipper',), ('Supplier',),
+# ('Territory',)]
+def run_queries():
+    curs = con.cursor()
+    print(curs.execute('SELECT COUNT(*) FROM Category;').fetchall())
+    print(curs.execute('SELECT COUNT(*) FROM Category WHERE x >= 5 AND y >=5;').fetchall())
+    print(curs.execute('SELECT COUNT(DISTINCT y) FROM Category;').fetchall())
